@@ -1,0 +1,31 @@
+{
+  "name": "solana-nft-practice",
+  "version": "0.0.1",
+  "description": "Solana app that creates and mints an NFT",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/client/main.ts",
+    "reset-and-build": "./scripts/cicd.sh reset-and-build",
+    "build": "./scripts/cicd.sh build",
+    "deploy": "./scripts/cicd.sh deploy",
+    "clean": "./scripts/cicd.sh clean",
+    "test": "cargo test-bpf --manifest-path=./src/mint/Cargo.toml"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@solana/buffer-layout": "^4.0.1",
+    "@solana/spl-token": "^0.4.6",
+    "@solana/web3.js": "^1.91.8",
+    "borsh": "^2.0.0",
+    "dotenv": "^16.4.5",
+    "mz": "^2.7.0",
+    "yaml": "^2.4.2"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.6",
+    "@types/mz": "^2.7.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
