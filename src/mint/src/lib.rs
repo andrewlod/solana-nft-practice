@@ -8,7 +8,7 @@ use solana_program::{
     system_instruction,
     native_token::LAMPORTS_PER_SOL
 };
-use spl_token::instruction as token_instruction;
+use spl_token::instruction::{self as token_instruction, AuthorityType};
 use spl_associated_token_account::instruction as token_account_instruction;
 
 entrypoint!(process_instruction);
@@ -95,6 +95,22 @@ fn process_instruction(
             token_account.clone(),
             token_program.clone(),
             rent.clone()
+        ]
+    )?;
+
+    msg!("Disabling token minting");
+    invoke(
+        &token_instruction::set_authority(
+            token_program.key,
+            mint.key,
+            None,
+            AuthorityType::MintTokens,
+            mint_authority.key,
+            &[mint_authority.key]
+        )?,
+        &[
+            mint.clone(),
+            mint_authority.clone()
         ]
     )?;
 
